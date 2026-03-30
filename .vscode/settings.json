@@ -6,5 +6,10 @@
     "titleBar.inactiveBackground": "#40642c99",
     "titleBar.inactiveForeground": "#e7e7e799"
   },
-  "peacock.color": "#40642c"
+  "peacock.color": "#40642c",
+  "files.exclude": {
+    "public/": true,
+    "resources/": true,
+    ".hugo_build.lock": true
+  }
 }
