@@ -10,6 +10,7 @@
   "files.exclude": {
     "public/": true,
     "resources/": true,
-    ".hugo_build.lock": true
+    ".hugo_build.lock": true,
+    "themes/": true
   }
 }
