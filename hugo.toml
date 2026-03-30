@@ -1,0 +1,4 @@
+baseURL = 'akowalz.github.io'
+locale = 'en-us'
+title = 'Alex Kowalczuk'
+theme = 'ananke'
