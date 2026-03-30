@@ -11,6 +11,5 @@
     "public/": true,
     "resources/": true,
     ".hugo_build.lock": true,
-    "themes/": true
   }
 }

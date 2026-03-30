@@ -1,11 +1,10 @@
 <!doctype html>
 <html lang="en-us">
-  <head>
-	<meta name="generator" content="Hugo 0.159.1"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alex Kowalczuk</title>
+    <title>Posts | Alex Kowalczuk</title>
     <meta name="description" content="Alex&#39;s personal site" />
 
     
@@ -218,75 +217,107 @@
     <div class="container">
       
 <style>
-  .page-container {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;  
-    max-width: 580px;  
-    padding: 0 20px;  
+  .posts-container {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
   
-  .content-column {
-    width: 100%;
-    box-sizing: border-box;
-    min-width: auto;
-    max-width: 580px;  
-    font-size: 15px;
+  .posts-header {
+    margin-bottom: 40px;
   }
   
-  @media (max-width: 992px) {
-    .page-container {
-      flex-direction: column;
-    }
-    
-    .content-column {
-      width: 100%;
-      padding-right: 0;
-      min-width: auto;  
-      max-width: 580px;  
-      margin: 0 auto;  
-    }
+  .posts-title {
+    font-family: 'Source Serif Pro', serif;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #4a4b4f;
+  }
+  
+  .posts-description {
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  .post-list {
+    margin-bottom: 40px;
+  }
+  
+  .post-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .post-item:last-child {
+    border-bottom: none;
+  }
+  
+  .post-link {
+    display: block;
+    text-decoration: none;
+    color: #4a4b4f;
+  }
+  
+  .post-link:hover .post-item-title {
+    color: #8f6a60;
+  }
+  
+  .post-item-title {
+    font-family: 'Source Serif Pro', serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    transition: color 0.2s;
+  }
+  
+  .post-item-date {
+    color: #9d9d9d;
+    font-style: italic;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  
+  .post-item-description {
+    color: #666;
+    line-height: 1.5;
+  }
+  
+  .back-link {
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    color: #8f6a60;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+  
+  .back-link:hover {
+    color: #6b5046;
   }
 </style>
 
-<div class="page-container">
-  <div class="content-column">
-    <div class="section">
-      
-        <p>Hi, I&rsquo;m Alex 👋. I&rsquo;m a Software Engineer based in Chicago, IL.</p>
-<p>I occassionally write here, you can follow me
-on <a href="https://akowalz.github.io/index.xml">RSS</a> if you&rsquo;d like to follow along!</p>
-
-      
-    </div>    
+<div class="posts-container">
+  <div class="posts-header">
+    <h1 class="posts-title">Posts</h1>
     
-    <div class="section">
-      <div class="works-title">Blog</div>
-
-      
-      <div class="work-item">
-        <a href="/posts/2026-03-30_test_post/" class="work-link">
-          <span class="work-title">2026 03 30_test_post</span> 
-          <span class="year">(2026)</span>
-          <div class="description">Add a brief description here.</div>
-        </a>
-      </div>
-      
-    </div>
-
-    <div class="contact">
-        
-          <h3 id="contact">Contact</h3>
-<p>You can find me on <a href="https://www.linkedin.com/in/alex-kowalczuk/">Linkedin</a>, but I may
-miss your message there if you send me one.</p>
-<p>Or, you can email me at: <a href="mailto:&#097;&#108;&#101;&#120;&#115;&#107;&#111;&#119;&#097;&#108;&#099;&#122;&#117;&#107;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;
-">
-alexskowalczuk@gmail.com
-</a></p>
-
-         
-    </div>
   </div>
+  
+  <div class="post-list">
+    
+    <div class="post-item">
+      <a href="//localhost:1313/posts/2026-03-30_test_post/" class="post-link">
+        <h2 class="post-item-title">2026 03 30_test_post</h2>
+        <div class="post-item-date">March 30, 2026</div>
+        <div class="post-item-description">Add a brief description here.</div>
+      </a>
+    </div>
+    
+  </div>
+  
+  <a href="/" class="back-link">← Back to home</a>
 </div>
 
     </div>
