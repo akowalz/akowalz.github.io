@@ -9,32 +9,11 @@
     <lastBuildDate>Mon, 30 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Building a Simple CLI in Go</title>
-      <link>http://localhost:1313/posts/2026-03-30_building_a_simple_cli_in_go/</link>
-      <pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/2026-03-30_building_a_simple_cli_in_go/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve been reaching for Go a lot lately when I need a quick command-line tool. The standard library gives you almost everything you need, and the result is a single binary you can drop anywhere. Here&amp;rsquo;s a walkthrough of building a small CLI that reads a JSON file and prints a filtered summary.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>On Simplicity</title>
-      <link>http://localhost:1313/posts/2026-03-25_on_simplicity/</link>
-      <pubDate>Wed, 25 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/2026-03-25_on_simplicity/</guid>
-      <description>&lt;p&gt;There&amp;rsquo;s something satisfying about stripping things down to their essentials. In software, in writing, in design — the best work often comes from removing rather than adding.&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve been thinking about this a lot lately as I rebuild my personal site. The temptation is always to reach for a framework, add a build step, pull in dependencies. But what if you just&amp;hellip; didn&amp;rsquo;t?&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Things I Learned This Week</title>
-      <link>http://localhost:1313/posts/2026-03-20_things_i_learned_this_week/</link>
-      <pubDate>Fri, 20 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/2026-03-20_things_i_learned_this_week/</guid>
-      <description>&lt;p&gt;A grab bag of things that caught my attention this week.&lt;/p&gt;&#xA;&lt;p&gt;First, I discovered that Hugo&amp;rsquo;s summary handling is smarter than I expected. You can either let it auto-truncate or drop a `&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>Hello World</title>
       <link>http://localhost:1313/posts/2026-03-15_hello_world/</link>
-      <pubDate>Sun, 15 Mar 2026 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/2026-03-15_hello_world/</guid>
-      <description>&lt;p&gt;Every blog starts somewhere. This is that post — the one where I convince myself that yes, I will actually write things here, and no, it won&amp;rsquo;t just sit empty collecting dust.&lt;/p&gt;&#xA;&lt;p&gt;The plan is to write about software engineering, side projects, and whatever else I find interesting. No schedule, no pressure. Just writing when I have something worth sharing.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Just a test post, come back soon for more.&lt;/p&gt;</description>
     </item>
     <item>
       <title>About</title>
