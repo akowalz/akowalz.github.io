@@ -2,21 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/posts/2026-03-15_hello_world/</loc>
+    <loc>https://akowalz.github.io/posts/2026-03-15_hello_world/</loc>
     <lastmod>2026-03-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://akowalz.github.io/</loc>
     <lastmod>2026-03-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://akowalz.github.io/posts/</loc>
     <lastmod>2026-03-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://akowalz.github.io/about/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://akowalz.github.io/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/contact/</loc>
+    <loc>https://akowalz.github.io/contact/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://akowalz.github.io/tags/</loc>
   </url>
 </urlset>
