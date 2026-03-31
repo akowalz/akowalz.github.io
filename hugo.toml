@@ -1,18 +1,4 @@
-baseURL = 'akowalz.github.io'
+baseURL = 'https://akowalz.github.io'
 locale = 'en-us'
 title = 'Alex Kowalczuk'
-theme = 'ritzy'
-
-# Params for Rityz yheme
-[params]
-  author = "Alex Kowalczuk"
-  description = "Alex's personal site"
-
-[caches]
-  [caches.images]
-    dir = ':cacheDir/images'
-
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
+summaryLength = 40

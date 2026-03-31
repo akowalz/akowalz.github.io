@@ -1,33 +1,47 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Alex Kowalczuk</title>
-    <link>//localhost:1313/</link>
-    <description>Recent content on Alex Kowalczuk</description>
+    <title>Home on Alex Kowalczuk</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content in Home on Alex Kowalczuk</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 Mar 2026 10:44:22 -0500</lastBuildDate>
-    <atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 25 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>2026 03 30_test_post</title>
-      <link>//localhost:1313/posts/2026-03-30_test_post/</link>
-      <pubDate>Mon, 30 Mar 2026 10:44:22 -0500</pubDate>
-      <guid>//localhost:1313/posts/2026-03-30_test_post/</guid>
-      <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae justo vel velit sagittis&#xA;tempor. Nullam in dignissim leo, vitae tincidunt nisi. Cras ultrices molestie tortor,&#xA;vel fringilla purus volutpat non.&lt;/p&gt;&#xA;&lt;p&gt;Proin sit amet purus lectus. Sed dapibus diam vel magna commodo, nec vulputate tellus fermentum.&#xA;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.&lt;/p&gt;&#xA;&lt;h2 id=&#34;code&#34;&gt;Code&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-Python3&#34; data-lang=&#34;Python3&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; __name__ &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;__main__&amp;#34;&lt;/span&gt;:&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# Check if a file path argument is provided&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; len(sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;argv) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;:&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Usage: ./parse_quic_log.py &amp;lt;path_to_log_file&amp;gt;&amp;#34;&lt;/span&gt;, file&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;stderr)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;exit(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)  &lt;span style=&#34;color:#75715e&#34;&gt;# Exit with an error code indicating incorrect usage&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    input_filepath &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;argv[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    output_data &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; parse_quic_log(input_filepath)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; output_data[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;packets&amp;#34;&lt;/span&gt;]:&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# Output as a JSON object to standard output&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print(json&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dumps(output_data, indent&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;))&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;elif&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; output_data[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;packets&amp;#34;&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;exists(input_filepath) &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;getsize(input_filepath) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;:&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# This case means the file exists and is not empty, but no matching lines were found&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print(&lt;span style=&#34;color:#e6db74&#34;&gt;f&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Warning: No matching data found in &amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;{&lt;/span&gt;input_filepath&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;.&amp;#34;&lt;/span&gt;, file&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;stderr)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# Still output the empty structure&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print(json&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dumps(output_data, indent&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;))&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;math&#34;&gt;Math&lt;/h2&gt;&#xA;&lt;p&gt;You can use LaTeX math in your posts. For inline math, use single dollar signs, e.g. $E = mc^2$.&lt;/p&gt;</description>
+      <title>On Simplicity</title>
+      <link>http://localhost:1313/posts/2026-03-25_on_simplicity/</link>
+      <pubDate>Wed, 25 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2026-03-25_on_simplicity/</guid>
+      <description>&lt;p&gt;There&amp;rsquo;s something satisfying about stripping things down to their essentials. In software, in writing, in design — the best work often comes from removing rather than adding.&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve been thinking about this a lot lately as I rebuild my personal site. The temptation is always to reach for a framework, add a build step, pull in dependencies. But what if you just&amp;hellip; didn&amp;rsquo;t?&lt;/p&gt;</description>
     </item>
     <item>
-      <title></title>
-      <link>//localhost:1313/_about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/_about/</guid>
-      <description>&lt;p&gt;Hi, I&amp;rsquo;m Alex 👋. I&amp;rsquo;m a Software Engineer based in Chicago, IL.&lt;/p&gt;&#xA;&lt;p&gt;I occassionally write here, you can follow me&#xA;on &lt;a href=&#34;https://akowalz.github.io/posts/index.xml&#34;&gt;RSS&lt;/a&gt; if you&amp;rsquo;d like to follow along!&lt;/p&gt;</description>
+      <title>Things I Learned This Week</title>
+      <link>http://localhost:1313/posts/2026-03-20_things_i_learned_this_week/</link>
+      <pubDate>Fri, 20 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2026-03-20_things_i_learned_this_week/</guid>
+      <description>&lt;p&gt;A grab bag of things that caught my attention this week.&lt;/p&gt;&#xA;&lt;p&gt;First, I discovered that Hugo&amp;rsquo;s summary handling is smarter than I expected. You can either let it auto-truncate or drop a `&lt;/p&gt;</description>
     </item>
     <item>
-      <title></title>
-      <link>//localhost:1313/_contact/</link>
+      <title>Hello World</title>
+      <link>http://localhost:1313/posts/2026-03-15_hello_world/</link>
+      <pubDate>Sun, 15 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2026-03-15_hello_world/</guid>
+      <description>&lt;p&gt;Every blog starts somewhere. This is that post — the one where I convince myself that yes, I will actually write things here, and no, it won&amp;rsquo;t just sit empty collecting dust.&lt;/p&gt;&#xA;&lt;p&gt;The plan is to write about software engineering, side projects, and whatever else I find interesting. No schedule, no pressure. Just writing when I have something worth sharing.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/_contact/</guid>
-      <description>&lt;h3 id=&#34;contact&#34;&gt;Contact&lt;/h3&gt;&#xA;&lt;p&gt;You can find me on &lt;a href=&#34;https://www.linkedin.com/in/alex-kowalczuk/&#34;&gt;Linkedin&lt;/a&gt;, but I may&#xA;miss your message there if you send me one.&lt;/p&gt;&#xA;&lt;p&gt;Or, you can email me at: &lt;a href=&#34;mailto:&amp;#097;&amp;#108;&amp;#101;&amp;#120;&amp;#115;&amp;#107;&amp;#111;&amp;#119;&amp;#097;&amp;#108;&amp;#099;&amp;#122;&amp;#117;&amp;#107;&amp;#064;&amp;#103;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&#xA;&#34;&gt;&#xA;alexskowalczuk@gmail.com&#xA;&lt;/a&gt;&lt;/p&gt;</description>
+      <guid>http://localhost:1313/about/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Contact</title>
+      <link>http://localhost:1313/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/contact/</guid>
+      <description>&lt;p&gt;&#xA;You can find me on &lt;a href=&#34;https://www.linkedin.com/in/alex-kowalczuk/&#34;&gt;LinkedIn&lt;/a&gt;, but I may&#xA;miss your message there if you send me one.&#xA;&lt;/p&gt;&#xA;&#xA;&lt;p&gt;&#xA;Or, you can email me at &lt;a href=&#34;mailto:&amp;#097;&amp;#108;&amp;#101;&amp;#120;&amp;#115;&amp;#107;&amp;#111;&amp;#119;&amp;#097;&amp;#108;&amp;#099;&amp;#122;&amp;#117;&amp;#107;&amp;#064;&amp;#103;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&#xA;&#34;&gt;&#xA;&amp;#097;&amp;#108;&amp;#101;&amp;#120;&amp;#115;&amp;#107;&amp;#111;&amp;#119;&amp;#097;&amp;#108;&amp;#099;&amp;#122;&amp;#117;&amp;#107;&amp;#064;&amp;#103;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&#xA;&lt;/a&gt;&#xA;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

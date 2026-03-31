@@ -1,0 +1,18 @@
+{{ define "main" }}
+  <section class="about">
+    {{ .Content }}
+  </section>
+
+  <hr>
+
+  {{ with (site.GetPage "posts").Pages.ByDate.Reverse | first 1 }}
+    {{ range . }}
+      <article>
+        <h1><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+        {{ .Content | truncate 1000 }}
+        <p><a href="{{ .RelPermalink }}">Read more</a></p>
+      </article>
+    {{ end }}
+  {{ end }}
+{{ end }}

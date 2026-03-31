@@ -1,341 +1,59 @@
-<!doctype html>
-<html lang="en-us">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Posts | Alex Kowalczuk</title>
-    <meta name="description" content="Alex&#39;s personal site" />
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Posts | Alex Kowalczuk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lato:wght@400;700&display=swap">
 
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
 
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Inter', sans-serif;
-        font-size: 16px;
-        line-height: 1.6;
-        color: #4a4b4f;
-        background-color: #fbfbfb;
-      }
 
-      .container {
-        max-width: 580px;  
-        margin: 0 auto;
-        padding: 60px 20px;
-      }
-
-      h1 {
-        font-family: 'Source Serif Pro', serif;
-        font-size: 24px;
-        font-weight: 600;
-        margin: 0 0 40px 0;
-        color: #4a4b4f;
-      }
-
-      p {
-        margin: 0 0 20px 0;
-        line-height: 1.7;
-      }
-
-      a {
-        color: #8f6a60;
-        text-decoration: underline;
-        text-decoration-thickness: 1px;
-        text-underline-offset: 2px;
-      }
-
-      a:hover {
-        color: #6b5046;
-      }
-
-      .section {
-        margin-bottom: 40px;
-      }
-
-      .works-title {
-        font-weight: 600;
-        margin-bottom: 15px;
-        color: #4a4b4f;
-      }
-
-      .work-item {
-        margin-bottom: 12px;
-        line-height: 1.6;
-      }
-
-      .work-link {
-        display: block;
-        text-decoration: none;
-        color: #4a4b4f;
-      }
-
-      .work-link:hover {
-        opacity: 0.8;
-      }
-
-      .work-title {
-        font-weight: 500;
-      }
-
-      .publication {
-        color: #8f6a60;
-      }
-
-      .year {
-        color: #9d9d9d;
-      }
-
-      .description {
-        color: #9d9d9d;
-        font-style: italic;
-        margin-top: 4px;
-      }
-
-      .contact {
-        margin-top: 50px;
-        padding-top: 30px;
-        border-top: 1px solid #e5e5e5;
-      }
-
-      .footer-image {
-        margin-top: 30px;
-        text-align: left;
-      }
-
-      .footer-image img {
-        width: 60px;
-        height: auto;
-        opacity: 0.7;
-      }
-
-      @media (max-width: 768px) {
-        .container {
-          padding: 40px 20px;
-        }
-
-        h1 {
-          font-size: 22px;
-        }
-
-        body {
-          font-size: 15px;
-        }
-      }
-      
-       
-      pre {
-        background-color: #f5f5f5;
-        padding: 16px;
-        border-radius: 4px;
-        overflow-x: auto;
-        margin: 20px 0;
-      }
-      
-      code {
-        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-        font-size: 14px;
-        line-height: 1.5;
-      }
-      
-      pre code {
-        display: block;
-        white-space: pre !important;
-        word-wrap: normal !important;
-        word-break: normal;
-        overflow-x: auto;
-      }
-      
-       
-      p code, li code, h1 code, h2 code, h3 code {
-        background-color: #f5f5f5;
-        padding: 3px 5px;
-        border-radius: 3px;
-        font-size: 0.9em;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-      }
-
-       
-      .post-content mjx-container[display="true"] {
-        display: block;
-        text-align: center;
-        margin: 1em 0;
-        overflow-x: auto !important;
-        overflow-y: visible !important;
-        max-width: 100% !important;
-        width: 100% !important;
-        box-sizing: border-box;
-        padding-top: 1em;
-        padding-bottom: 1em;
-        min-height: unset;
-      }
-       
-      .post-content mjx-container[display="true"] mjx-math {
-        min-width: 0 !important;
-        max-width: 100% !important;
-        overflow-x: auto !important;
-        overflow-y: visible !important;
-        white-space: pre;
-        box-sizing: border-box;
-        min-height: unset;
-      }
-       
-      .post-content {
-        overflow-x: auto;
-        overflow-y: visible;
-      }
-      
-       
-      .post-content img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 100%;
-        height: auto;
-        border-radius: 4px;
-        margin-top: 1.5em;
-        margin-bottom: 1.5em;
-      }
-      
-       
-      .post-content img + em {
-        display: block;
-        text-align: center;
-        font-size: 0.9em;
-        color: #777;
-        margin-top: -1em;
-        margin-bottom: 1.5em;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      
-<style>
-  .posts-container {
-    max-width: 750px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  
-  .posts-header {
-    margin-bottom: 40px;
-  }
-  
-  .posts-title {
-    font-family: 'Source Serif Pro', serif;
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    color: #4a4b4f;
-  }
-  
-  .posts-description {
-    color: #666;
-    margin-bottom: 30px;
-  }
-  
-  .post-list {
-    margin-bottom: 40px;
-  }
-  
-  .post-item {
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .post-item:last-child {
-    border-bottom: none;
-  }
-  
-  .post-link {
-    display: block;
-    text-decoration: none;
-    color: #4a4b4f;
-  }
-  
-  .post-link:hover .post-item-title {
-    color: #8f6a60;
-  }
-  
-  .post-item-title {
-    font-family: 'Source Serif Pro', serif;
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    transition: color 0.2s;
-  }
-  
-  .post-item-date {
-    color: #9d9d9d;
-    font-style: italic;
-    margin-bottom: 8px;
-    font-size: 14px;
-  }
-  
-  .post-item-description {
-    color: #666;
-    line-height: 1.5;
-  }
-  
-  .back-link {
-    display: inline-block;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    color: #8f6a60;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
-  }
-  
-  .back-link:hover {
-    color: #6b5046;
-  }
-</style>
-
-<div class="posts-container">
-  <div class="posts-header">
-    <h1 class="posts-title">Posts</h1>
-    
-  </div>
-  
-  <div class="post-list">
-    
-    <div class="post-item">
-      <a href="//localhost:1313/posts/2026-03-30_test_post/" class="post-link">
-        <h2 class="post-item-title">2026 03 30_test_post</h2>
-        <div class="post-item-date">March 30, 2026</div>
-        <div class="post-item-description">Add a brief description here.</div>
-      </a>
+</head>
+<body>
+  <header>
+  <nav>
+    <a href="/" class="site-name">Alex Kowalczuk</a>
+    <div>
+      <a href="/contact/">Contact</a>
+      <a href="/posts/">Blog</a>
     </div>
-    
-  </div>
-  
-  <a href="/" class="back-link">← Back to home</a>
-</div>
+  </nav>
+</header>
 
-    </div>
+  <main>
     
-<script>
-  MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-      displayMath: [['$$', '$$'], ['\\[', '\\]']],
-      processEscapes: true,
-      processEnvironments: true
-    },
-    options: {
-      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-  };
-</script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
-  </body>
+  <ul class="post-list">
+    
+    <li class="post-item">
+      <a href="/posts/2026-03-25_on_simplicity/">On Simplicity</a>
+      <time datetime="2026-03-25">March 25, 2026</time>
+      <p><p>There&rsquo;s something satisfying about stripping things down to their essentials. In software, in writing, in design — the best work often comes from removing rather than adding.</p>
+<p>I&rsquo;ve been thinking about this a lot lately as I rebuild my personal site. The temptation is always to reach for a framework, add a build step, pull in dependencies. But what if you just&hellip; didn&rsquo;t?</p></p>
+    </li>
+    
+    <li class="post-item">
+      <a href="/posts/2026-03-20_things_i_learned_this_week/">Things I Learned This Week</a>
+      <time datetime="2026-03-20">March 20, 2026</time>
+      <p><p>A grab bag of things that caught my attention this week.</p>
+<p>First, I discovered that Hugo&rsquo;s summary handling is smarter than I expected. You can either let it auto-truncate or drop a `</p></p>
+    </li>
+    
+    <li class="post-item">
+      <a href="/posts/2026-03-15_hello_world/">Hello World</a>
+      <time datetime="2026-03-15">March 15, 2026</time>
+      <p><p>Every blog starts somewhere. This is that post — the one where I convince myself that yes, I will actually write things here, and no, it won&rsquo;t just sit empty collecting dust.</p>
+<p>The plan is to write about software engineering, side projects, and whatever else I find interesting. No schedule, no pressure. Just writing when I have something worth sharing.</p></p>
+    </li>
+    
+  </ul>
+
+  </main>
+  <footer>
+</footer>
+
+</body>
 </html>
