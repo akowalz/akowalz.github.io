@@ -2,6 +2,10 @@
 title: Home
 ---
 
-Hi, I'm Alex. I'm a software engineer who enjoys building things and writing about what I learn along the way.
+Hi, I'm Alex. I'm a Software Engineer based in Chicago, IL. I love building great products
+with great people. I have experience building web applications at scale as an individual
+contributor, Tech Lead, and Engineering Manager.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Most recently, I worked at [Tegus](tegus.co) as the Engineering Lead over Search and AI.
+
+Occassionally, I blog on this site. Check out my most recent post below.

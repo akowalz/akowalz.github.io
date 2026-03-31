@@ -37,6 +37,7 @@ a:hover {
 
 /* header */
 header nav {
+  font-family: var(--body);
   display: flex;
   justify-content: space-between;
   align-items: baseline;
