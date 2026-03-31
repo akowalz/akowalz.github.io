@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building a Simple CLI in Go | Alex Kowalczuk</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lato:wght@400;700&display=swap">
+
+  <link rel="stylesheet" href="/css/main.css">
+
+
+</head>
+<body>
+  <header>
+  <nav>
+    <a href="/" class="site-name">Alex Kowalczuk</a>
+    <div>
+      <a href="/contact/">Contact</a>
+      <a href="/posts/">Blog</a>
+    </div>
+  </nav>
+</header>
+
+  <main>
+    
+<article>
+  <h1>Building a Simple CLI in Go</h1>
+  <time datetime="2026-03-30">March 30, 2026</time>
+  <p>I&rsquo;ve been reaching for Go a lot lately when I need a quick command-line tool. The standard library gives you almost everything you need, and the result is a single binary you can drop anywhere. Here&rsquo;s a walkthrough of building a small CLI that reads a JSON file and prints a filtered summary.</p>
+<h2 id="setting-up-the-project">Setting up the project</h2>
+<p>Nothing fancy — just <code>go mod init</code> and a single <code>main.go</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>mkdir jsonfilter &amp;&amp; cd jsonfilter
+</span></span><span style="display:flex;"><span>go mod init github.com/akowalz/jsonfilter
+</span></span></code></pre></div><h2 id="the-data-model">The data model</h2>
+<p>Let&rsquo;s say we&rsquo;re working with a list of events. Each event has a <code>name</code>, a <code>timestamp</code>, and a <code>level</code> that&rsquo;s one of <code>info</code>, <code>warn</code>, or <code>error</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#c678dd">type</span> <span style="color:#e06c75">Event</span> <span style="color:#c678dd">struct</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">Name</span>      <span style="color:#e5c07b">string</span>    <span style="color:#98c379">`json:&#34;name&#34;`</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">Timestamp</span> <span style="color:#e06c75">time</span>.<span style="color:#e06c75">Time</span> <span style="color:#98c379">`json:&#34;timestamp&#34;`</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">Level</span>     <span style="color:#e5c07b">string</span>    <span style="color:#98c379">`json:&#34;level&#34;`</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We&rsquo;ll load these from a JSON file, so we need a function that reads the file and unmarshals it into a slice of <code>Event</code>. The <code>os.ReadFile</code> function makes this pretty clean:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#c678dd">func</span> <span style="color:#61afef;font-weight:bold">loadEvents</span>(<span style="color:#e06c75">path</span> <span style="color:#e5c07b">string</span>) ([]<span style="color:#e06c75">Event</span>, <span style="color:#e5c07b">error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">data</span>, <span style="color:#e06c75">err</span> <span style="color:#56b6c2">:=</span> <span style="color:#e06c75">os</span>.<span style="color:#61afef;font-weight:bold">ReadFile</span>(<span style="color:#e06c75">path</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">if</span> <span style="color:#e06c75">err</span> <span style="color:#56b6c2">!=</span> <span style="color:#e5c07b">nil</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#c678dd">return</span> <span style="color:#e5c07b">nil</span>, <span style="color:#e06c75">fmt</span>.<span style="color:#61afef;font-weight:bold">Errorf</span>(<span style="color:#98c379">&#34;reading %s: %w&#34;</span>, <span style="color:#e06c75">path</span>, <span style="color:#e06c75">err</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">var</span> <span style="color:#e06c75">events</span> []<span style="color:#e06c75">Event</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">if</span> <span style="color:#e06c75">err</span> <span style="color:#56b6c2">:=</span> <span style="color:#e06c75">json</span>.<span style="color:#61afef;font-weight:bold">Unmarshal</span>(<span style="color:#e06c75">data</span>, <span style="color:#56b6c2">&amp;</span><span style="color:#e06c75">events</span>); <span style="color:#e06c75">err</span> <span style="color:#56b6c2">!=</span> <span style="color:#e5c07b">nil</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#c678dd">return</span> <span style="color:#e5c07b">nil</span>, <span style="color:#e06c75">fmt</span>.<span style="color:#61afef;font-weight:bold">Errorf</span>(<span style="color:#98c379">&#34;parsing JSON: %w&#34;</span>, <span style="color:#e06c75">err</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">return</span> <span style="color:#e06c75">events</span>, <span style="color:#e5c07b">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Note the <code>%w</code> verb in <code>fmt.Errorf</code> — this wraps the original error so callers can still use <code>errors.Is</code> or <code>errors.As</code> to inspect it. Small thing, but it matters when you&rsquo;re debugging.</p>
+<h2 id="filtering">Filtering</h2>
+<p>The filter itself is straightforward. We take a <code>level</code> string and return a new slice:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#c678dd">func</span> <span style="color:#61afef;font-weight:bold">filterByLevel</span>(<span style="color:#e06c75">events</span> []<span style="color:#e06c75">Event</span>, <span style="color:#e06c75">level</span> <span style="color:#e5c07b">string</span>) []<span style="color:#e06c75">Event</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">var</span> <span style="color:#e06c75">result</span> []<span style="color:#e06c75">Event</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">for</span> <span style="color:#e06c75">_</span>, <span style="color:#e06c75">e</span> <span style="color:#56b6c2">:=</span> <span style="color:#c678dd">range</span> <span style="color:#e06c75">events</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#c678dd">if</span> <span style="color:#e06c75">e</span>.<span style="color:#e06c75">Level</span> <span style="color:#56b6c2">==</span> <span style="color:#e06c75">level</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e06c75">result</span> = <span style="color:#e5c07b">append</span>(<span style="color:#e06c75">result</span>, <span style="color:#e06c75">e</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">return</span> <span style="color:#e06c75">result</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>You could get clever with generics here — a generic <code>Filter[T]</code> function that takes a predicate — but for a small tool like this, the explicit version is easier to read and easier to change.</p>
+<h2 id="parsing-flags">Parsing flags</h2>
+<p>Go&rsquo;s <code>flag</code> package is minimal but sufficient. I always forget that <code>flag.Parse()</code> has to be called <em>after</em> all flags are defined, which has bitten me more than once:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#c678dd">func</span> <span style="color:#61afef;font-weight:bold">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">path</span> <span style="color:#56b6c2">:=</span> <span style="color:#e06c75">flag</span>.<span style="color:#61afef;font-weight:bold">String</span>(<span style="color:#98c379">&#34;file&#34;</span>, <span style="color:#98c379">&#34;&#34;</span>, <span style="color:#98c379">&#34;path to JSON file&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">level</span> <span style="color:#56b6c2">:=</span> <span style="color:#e06c75">flag</span>.<span style="color:#61afef;font-weight:bold">String</span>(<span style="color:#98c379">&#34;level&#34;</span>, <span style="color:#98c379">&#34;&#34;</span>, <span style="color:#98c379">&#34;filter by level (info, warn, error)&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">flag</span>.<span style="color:#61afef;font-weight:bold">Parse</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">if</span> <span style="color:#56b6c2">*</span><span style="color:#e06c75">path</span> <span style="color:#56b6c2">==</span> <span style="color:#98c379">&#34;&#34;</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e06c75">fmt</span>.<span style="color:#61afef;font-weight:bold">Fprintln</span>(<span style="color:#e06c75">os</span>.<span style="color:#e06c75">Stderr</span>, <span style="color:#98c379">&#34;missing required flag: -file&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#e06c75">os</span>.<span style="color:#61afef;font-weight:bold">Exit</span>(<span style="color:#d19a66">1</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">events</span>, <span style="color:#e06c75">err</span> <span style="color:#56b6c2">:=</span> <span style="color:#61afef;font-weight:bold">loadEvents</span>(<span style="color:#56b6c2">*</span><span style="color:#e06c75">path</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">if</span> <span style="color:#e06c75">err</span> <span style="color:#56b6c2">!=</span> <span style="color:#e5c07b">nil</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e06c75">fmt</span>.<span style="color:#61afef;font-weight:bold">Fprintf</span>(<span style="color:#e06c75">os</span>.<span style="color:#e06c75">Stderr</span>, <span style="color:#98c379">&#34;error: %v\n&#34;</span>, <span style="color:#e06c75">err</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#e06c75">os</span>.<span style="color:#61afef;font-weight:bold">Exit</span>(<span style="color:#d19a66">1</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">if</span> <span style="color:#56b6c2">*</span><span style="color:#e06c75">level</span> <span style="color:#56b6c2">!=</span> <span style="color:#98c379">&#34;&#34;</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e06c75">events</span> = <span style="color:#61afef;font-weight:bold">filterByLevel</span>(<span style="color:#e06c75">events</span>, <span style="color:#56b6c2">*</span><span style="color:#e06c75">level</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">for</span> <span style="color:#e06c75">_</span>, <span style="color:#e06c75">e</span> <span style="color:#56b6c2">:=</span> <span style="color:#c678dd">range</span> <span style="color:#e06c75">events</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e06c75">fmt</span>.<span style="color:#61afef;font-weight:bold">Printf</span>(<span style="color:#98c379">&#34;[%s] %s — %s\n&#34;</span>, <span style="color:#e06c75">e</span>.<span style="color:#e06c75">Level</span>, <span style="color:#e06c75">e</span>.<span style="color:#e06c75">Timestamp</span>.<span style="color:#61afef;font-weight:bold">Format</span>(<span style="color:#e06c75">time</span>.<span style="color:#e06c75">RFC3339</span>), <span style="color:#e06c75">e</span>.<span style="color:#e06c75">Name</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>One thing I like about this pattern: the <code>-level</code> flag is optional. If you omit it, you get everything. If you include it, you get just the events at that level. No subcommands, no config files, no YAML. Just <code>go run . -file events.json -level error</code> and you&rsquo;re done.</p>
+<h2 id="testing-it">Testing it</h2>
+<p>I usually throw a quick test file together by hand:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>[
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">&#34;name&#34;</span>: <span style="color:#98c379">&#34;server started&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">&#34;timestamp&#34;</span>: <span style="color:#98c379">&#34;2026-03-30T08:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">&#34;level&#34;</span>: <span style="color:#98c379">&#34;info&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">&#34;name&#34;</span>: <span style="color:#98c379">&#34;disk usage high&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">&#34;timestamp&#34;</span>: <span style="color:#98c379">&#34;2026-03-30T09:15:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">&#34;level&#34;</span>: <span style="color:#98c379">&#34;warn&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">&#34;name&#34;</span>: <span style="color:#98c379">&#34;connection refused&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">&#34;timestamp&#34;</span>: <span style="color:#98c379">&#34;2026-03-30T09:30:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">&#34;level&#34;</span>: <span style="color:#98c379">&#34;error&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">&#34;name&#34;</span>: <span style="color:#98c379">&#34;retry succeeded&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">&#34;timestamp&#34;</span>: <span style="color:#98c379">&#34;2026-03-30T09:31:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">&#34;level&#34;</span>: <span style="color:#98c379">&#34;info&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div><p>Then run it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ go run . -file events.json
+</span></span><span style="display:flex;"><span>[info] 2026-03-30T08:00:00Z — server started
+</span></span><span style="display:flex;"><span>[warn] 2026-03-30T09:15:00Z — disk usage high
+</span></span><span style="display:flex;"><span>[error] 2026-03-30T09:30:00Z — connection refused
+</span></span><span style="display:flex;"><span>[info] 2026-03-30T09:31:00Z — retry succeeded
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ go run . -file events.json -level error
+</span></span><span style="display:flex;"><span>[error] 2026-03-30T09:30:00Z — connection refused
+</span></span></code></pre></div><h2 id="writing-an-actual-test">Writing an actual test</h2>
+<p>Go&rsquo;s testing story is one of its best features. No framework needed — just a <code>_test.go</code> file and the <code>testing</code> package:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#c678dd">func</span> <span style="color:#61afef;font-weight:bold">TestFilterByLevel</span>(<span style="color:#e06c75">t</span> <span style="color:#56b6c2">*</span><span style="color:#e06c75">testing</span>.<span style="color:#e06c75">T</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">events</span> <span style="color:#56b6c2">:=</span> []<span style="color:#e06c75">Event</span>{
+</span></span><span style="display:flex;"><span>        {<span style="color:#e06c75">Name</span>: <span style="color:#98c379">&#34;a&#34;</span>, <span style="color:#e06c75">Level</span>: <span style="color:#98c379">&#34;info&#34;</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#e06c75">Name</span>: <span style="color:#98c379">&#34;b&#34;</span>, <span style="color:#e06c75">Level</span>: <span style="color:#98c379">&#34;error&#34;</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#e06c75">Name</span>: <span style="color:#98c379">&#34;c&#34;</span>, <span style="color:#e06c75">Level</span>: <span style="color:#98c379">&#34;info&#34;</span>},
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">got</span> <span style="color:#56b6c2">:=</span> <span style="color:#61afef;font-weight:bold">filterByLevel</span>(<span style="color:#e06c75">events</span>, <span style="color:#98c379">&#34;info&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">if</span> <span style="color:#e5c07b">len</span>(<span style="color:#e06c75">got</span>) <span style="color:#56b6c2">!=</span> <span style="color:#d19a66">2</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e06c75">t</span>.<span style="color:#61afef;font-weight:bold">Errorf</span>(<span style="color:#98c379">&#34;expected 2 events, got %d&#34;</span>, <span style="color:#e5c07b">len</span>(<span style="color:#e06c75">got</span>))
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">for</span> <span style="color:#e06c75">_</span>, <span style="color:#e06c75">e</span> <span style="color:#56b6c2">:=</span> <span style="color:#c678dd">range</span> <span style="color:#e06c75">got</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#c678dd">if</span> <span style="color:#e06c75">e</span>.<span style="color:#e06c75">Level</span> <span style="color:#56b6c2">!=</span> <span style="color:#98c379">&#34;info&#34;</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e06c75">t</span>.<span style="color:#61afef;font-weight:bold">Errorf</span>(<span style="color:#98c379">&#34;expected level info, got %s&#34;</span>, <span style="color:#e06c75">e</span>.<span style="color:#e06c75">Level</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Run it with <code>go test ./...</code> and you&rsquo;re done. No mocking frameworks, no dependency injection containers, no test configuration files. Just code that calls other code and checks the result.</p>
+<h2 id="wrapping-up">Wrapping up</h2>
+<p>The whole thing is about 80 lines. It reads a file, filters some data, and prints output. There&rsquo;s nothing fancy about it, and that&rsquo;s the point. Not every tool needs to be a production service with graceful shutdown and structured logging. Sometimes <code>fmt.Printf</code> is all you need.</p>
+
+</article>
+
+  </main>
+  <footer>
+</footer>
+
+</body>
+</html>

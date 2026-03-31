@@ -2,13 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2026-03-25T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/posts/2026-03-30_building_a_simple_cli_in_go/</loc>
+    <lastmod>2026-03-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/2026-03-25_on_simplicity/</loc>
-    <lastmod>2026-03-25T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2026-03-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2026-03-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/2026-03-25_on_simplicity/</loc>
     <lastmod>2026-03-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/2026-03-20_things_i_learned_this_week/</loc>

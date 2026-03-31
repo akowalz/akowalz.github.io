@@ -5,6 +5,7 @@
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Alex Kowalczuk</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lato:wght@400;700&display=swap">
@@ -37,13 +38,23 @@
   
     
       <article>
-        <h1><a href="/posts/2026-03-25_on_simplicity/">On Simplicity</a></h1>
-        <time datetime="2026-03-25">March 25, 2026</time>
-        <p>There&rsquo;s something satisfying about stripping things down to their essentials. In software, in writing, in design — the best work often comes from removing rather than adding.</p>
-<p>I&rsquo;ve been thinking about this a lot lately as I rebuild my personal site. The temptation is always to reach for a framework, add a build step, pull in dependencies. But what if you just&hellip; didn&rsquo;t?</p>
-<p>A static site generator, some HTML, a bit of CSS. That&rsquo;s really all you need. The content is what matters, and everything else should get out of the way.</p>
-
-        <p><a href="/posts/2026-03-25_on_simplicity/">Read more</a></p>
+        <h1><a href="/posts/2026-03-30_building_a_simple_cli_in_go/">Building a Simple CLI in Go</a></h1>
+        <time datetime="2026-03-30">March 30, 2026</time>
+        <p>I&rsquo;ve been reaching for Go a lot lately when I need a quick command-line tool. The standard library gives you almost everything you need, and the result is a single binary you can drop anywhere. Here&rsquo;s a walkthrough of building a small CLI that reads a JSON file and prints a filtered summary.</p>
+<h2 id="setting-up-the-project">Setting up the project</h2>
+<p>Nothing fancy — just <code>go mod init</code> and a single <code>main.go</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>mkdir jsonfilter &amp;&amp; cd jsonfilter
+</span></span><span style="display:flex;"><span>go mod init github.com/akowalz/jsonfilter
+</span></span></code></pre></div><h2 id="the-data-model">The data model</h2>
+<p>Let&rsquo;s say we&rsquo;re working with a list of events. Each event has a <code>name</code>, a <code>timestamp</code>, and a <code>level</code> that&rsquo;s one of <code>info</code>, <code>warn</code>, or <code>error</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#c678dd">type</span> <span style="color:#e06c75">Event</span> <span style="color:#c678dd">struct</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">Name</span>      <span style="color:#e5c07b">string</span>    <span style="color:#98c379">`json:&#34;name&#34;`</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">Timestamp</span> <span style="color:#e06c75">time</span>.<span style="color:#e06c75">Time</span> <span style="color:#98c379">`json:&#34;timestamp&#34;`</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">Level</span>     <span style="color:#e5c07b">string</span>    <span style="color:#98c379">`json:&#34;level&#34;`</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We&rsquo;ll load these from a JSON file, so we need a function that reads the file and unmarshals it into a slice of <code>Event</code>. The <code>os.ReadFile</code> function makes this pretty clean:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#c678dd">func</span> <span style="color:#61afef;font-weight:bold">loadEvents</span>(<span style="color:#e06c75">path</span> <span style="color:#e5c07b">string</span>) …</span></span></code></pre></div>
+        <p><a href="/posts/2026-03-30_building_a_simple_cli_in_go/">Read more...</a></p>
       </article>
     
   

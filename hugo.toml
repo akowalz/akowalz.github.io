@@ -2,3 +2,8 @@ baseURL = 'https://akowalz.github.io'
 locale = 'en-us'
 title = 'Alex Kowalczuk'
 summaryLength = 40
+
+[markup.highlight]
+  style = 'onedark'  # warm, light background
+  noClasses = true
+  guessSyntax = true

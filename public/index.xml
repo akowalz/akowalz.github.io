@@ -6,8 +6,15 @@
     <description>Recent content in Home on Alex Kowalczuk</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a Simple CLI in Go</title>
+      <link>http://localhost:1313/posts/2026-03-30_building_a_simple_cli_in_go/</link>
+      <pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2026-03-30_building_a_simple_cli_in_go/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve been reaching for Go a lot lately when I need a quick command-line tool. The standard library gives you almost everything you need, and the result is a single binary you can drop anywhere. Here&amp;rsquo;s a walkthrough of building a small CLI that reads a JSON file and prints a filtered summary.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>On Simplicity</title>
       <link>http://localhost:1313/posts/2026-03-25_on_simplicity/</link>

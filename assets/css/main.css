@@ -7,6 +7,7 @@
   --faint: #aaa;
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
   --font-body: "Lato", system-ui, sans-serif;
+  --font-my-name: var(--font-body);
 }
 
 * {
@@ -58,8 +59,9 @@ header nav div a + a::before {
 }
 
 .site-name {
+  font-family: var(--font-my-name);
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: var(--text);
 }
 
@@ -108,8 +110,14 @@ hr {
 
 /* single post */
 article h1 {
-  font-size: 1.5rem;
+  font-size: 2rem;
+  color: var(--theme);
   margin-bottom: 0.25rem;
+}
+
+article h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 article time {
@@ -122,6 +130,35 @@ article time {
 article p {
   font-family: var(--font-body);
   margin-bottom: 1rem;
+}
+
+/* inline code */
+code {
+  font-size: 0.9em;
+  color: var(--theme);
+  background: hsla(0, 0%, 0%, 0.04);
+  border: 1px solid hsla(0, 0%, 0%, 0.08);
+  border-radius: 4px;
+  padding: 0.15em 0.35em;
+}
+
+pre {
+  background: #111 !important;
+  color: hsl(34, 26%, 90%);
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  line-height: 1.5;
+  font-size: 1.2em;
+}
+
+pre code {
+  color: inherit;
+  background: inherit;
+  border: none;
+  border-radius: 0;
+  padding: 0;
 }
 
 /* footer */
